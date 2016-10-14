@@ -144,7 +144,11 @@ link rotR(ARVORE a, link h) {
   x->right = h;
   return x;
 }
-
+link buscaPai(ARVORE a, link h, int key){
+	link aux = busca(a,key);
+	if() return aux;
+  
+}
 #if 0
 void remover (ARVORE a, int key);
 void removerNo (ARVORE a, link node);
