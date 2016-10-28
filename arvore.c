@@ -144,13 +144,39 @@ link rotR(ARVORE a, link h) {
   x->right = h;
   return x;
 }
-link buscaPai(ARVORE a, link h, int key){
-	link aux = busca(a,key);
-	if() return aux;
-  
+link buscaSubArvoreMaior (ARVORE a, link h) {
+	if(h->left == a->z) return h;
+	buscaSubArvoreMaior(a,h->left);
 }
+
+link buscaPai(ARVORE a, link h, int key){
+	if(h == a->z)return NULL;
+	if(key == h->left->key) return h;
+	if(key == h->right->key) return h;
+	buscaPai(ARVORE a, link h->left, int key);
+	buscaPai(ARVORE a, link h->right, int key);
+}
+void remover(ARVORE a, int key){
+	//nó folha
+	link temp = busca(ARVORE a,int key);
+	if(temp->left == a->z && temp->right == a->z) {
+		link pai = buscaPai(ARVORE a, link temp, int key);
+		free(temp);
+		pai->left = pai->right = a->z;
+	}
+	//2 nó filho
+	if(temp->left != a->z && temp->right != a->z){
+		link z = buscaSubArvoreMaior(a,temp);
+		z->left = temp->left;
+		free(temp);
+	}
+	
+	
+}
+
+
 #if 0
-void remover (ARVORE a, int key);
+
 void removerNo (ARVORE a, link node);
 void destroiArvore(ARVORE a);
 #endif 
